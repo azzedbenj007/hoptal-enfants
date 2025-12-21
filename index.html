@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôpital des Enfants Al-Amal | Excellence Pédiatrique au Maroc</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Configuration Tailwind personnalisée -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        medical: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Bleu ciel rassurant
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        warm: {
+                            500: '#f97316', // Orange amical
+                            600: '#ea580c',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Polices Google -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Styles personnalisés */
+        body {
+            font-family: 'Nunito', sans-serif;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .blob-shape {
+            position: absolute;
+            z-index: -1;
+            opacity: 0.1;
+        }
+        
+        /* Animation douce pour les cartes */
+        .service-card {
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Hero pattern */
+        .hero-bg {
+            background-color: #f0f9ff;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%230ea5e9' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="text-gray-700 bg-white">
+
+    <!-- Barre d'urgence supérieure -->
+    <div class="bg-red-500 text-white py-2 px-4 text-center text-sm font-bold animate-pulse">
+        <i class="fas fa-ambulance mr-2"></i> URGENCES PÉDIATRIQUES 24/7 : 05 22 00 00 00
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-medical-500 rounded-full flex items-center justify-center text-white text-xl mr-2">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <div>
+                        <span class="font-heading font-bold text-2xl text-medical-600">Al-Amal</span>
+                        <span class="block text-xs text-gray-500 font-semibold tracking-wide">HÔPITAL PÉDIATRIQUE</span>
+                    </div>
+                </div>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#accueil" class="text-gray-600 hover:text-medical-600 font-medium transition">Accueil</a>
+                    <a href="#specialites" class="text-gray-600 hover:text-medical-600 font-medium transition">Spécialités</a>
+                    <a href="#technologie" class="text-gray-600 hover:text-medical-600 font-medium transition">Innovation</a>
+                    <a href="#equipe" class="text-gray-600 hover:text-medical-600 font-medium transition">Médecins</a>
+                    <a href="#rendez-vous" class="bg-medical-500 hover:bg-medical-600 text-white px-5 py-2.5 rounded-full font-bold shadow-lg transition transform hover:scale-105">
+                        Prendre RDV
+                    </a>
+                </div>
+
+                <!-- Menu Mobile Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-medical-600 focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menu Mobile Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#accueil" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medical-600 hover:bg-medical-50">Accueil</a>
+                <a href="#specialites" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medical-600 hover:bg-medical-50">Spécialités</a>
+                <a href="#technologie" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-medical-600 hover:bg-medical-50">Innovation</a>
+                <a href="#rendez-vous" class="block w-full text-center mt-4 bg-medical-500 text-white px-3 py-3 rounded-md font-bold">Prendre RDV</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section Hero -->
+    <section id="accueil" class="hero-bg relative pt-16 pb-20 lg:pt-32 lg:pb-28 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-8 items-center">
+                <div class="mb-12 lg:mb-0">
+                    <span class="inline-block py-1 px-3 rounded-full bg-medical-100 text-medical-600 text-sm font-semibold mb-4">
+                        <i class="fas fa-star mr-1"></i> Élu meilleur service pédiatrique 2024
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold text-gray-900 leading-tight mb-6">
+                        La santé de votre enfant, <span class="text-medical-500">notre priorité absolue.</span>
+                    </h1>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Bienvenue à l'Hôpital Al-Amal. Nous combinons l'expertise médicale internationale avec la chaleur de l'hospitalité marocaine pour offrir à vos enfants les meilleurs soins possibles, de la naissance à l'adolescence.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#rendez-vous" class="bg-warm-500 hover:bg-warm-600 text-white text-center px-8 py-4 rounded-full font-bold shadow-lg transition transform hover:-translate-y-1">
+                            Consultation
+                        </a>
+                        <a href="#services" class="bg-white text-medical-600 border-2 border-medical-100 hover:border-medical-500 text-center px-8 py-4 rounded-full font-bold transition">
+                            Nos Services
+                        </a>
+                    </div>
+                    <div class="mt-8 flex items-center gap-6 text-sm text-gray-500 font-medium">
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Conventionné (CNSS, CNOPS...)
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fas fa-check-circle text-green-500 mr-2"></i> Ouvert 24/7
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <!-- Image décorative -->
+                    <div class="absolute -top-10 -right-10 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+                    <div class="absolute -bottom-10 -left-10 w-72 h-72 bg-medical-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob animation-delay-2000"></div>
+                    
+                    <img src="https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Docteur souriant avec un enfant" 
+                         class="relative rounded-3xl shadow-2xl border-4 border-white transform rotate-2 hover:rotate-0 transition duration-500 object-cover h-[500px] w-full"
+                         onerror="this.src='https://placehold.co/600x500?text=P%C3%A9diatrie+Maroc'">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indicateurs Clés -->
+    <div class="bg-medical-900 py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                <div>
+                    <div class="text-4xl font-bold mb-1">50+</div>
+                    <div class="text-medical-200 text-sm uppercase tracking-wider">Spécialistes</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-1">15k+</div>
+                    <div class="text-medical-200 text-sm uppercase tracking-wider">Enfants soignés / an</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-1">120</div>
+                    <div class="text-medical-200 text-sm uppercase tracking-wider">Lits d'hospitalisation</div>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-1">24/7</div>
+                    <div class="text-medical-200 text-sm uppercase tracking-wider">Urgences & Réa</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Spécialités -->
+    <section id="specialites" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-gray-900 sm:text-4xl">Nos Centres d'Excellence</h2>
+                <p class="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">Une prise en charge multidisciplinaire complète pour le bien-être de votre enfant.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="service-card p-8 rounded-2xl bg-white border border-gray-100 text-center group hover:border-medical-200">
+                    <div class="w-16 h-16 mx-auto bg-medical-50 text-medical-500 rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-500 group-hover:text-white transition">
+                        <i class="fas fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pédiatrie Générale</h3>
+                    <p class="text-gray-500">Suivi de croissance, vaccination nationale, et traitement des pathologies courantes de l'enfant.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card p-8 rounded-2xl bg-white border border-gray-100 text-center group hover:border-medical-200">
+                    <div class="w-16 h-16 mx-auto bg-medical-50 text-medical-500 rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-500 group-hover:text-white transition">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Cardiologie Pédiatrique</h3>
+                    <p class="text-gray-500">Diagnostic et traitement des anomalies cardiaques congénitales avec équipements de pointe.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card p-8 rounded-2xl bg-white border border-gray-100 text-center group hover:border-medical-200">
+                    <div class="w-16 h-16 mx-auto bg-medical-50 text-medical-500 rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-500 group-hover:text-white transition">
+                        <i class="fas fa-procedures"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Chirurgie Infantile</h3>
+                    <p class="text-gray-500">Blocs opératoires dédiés aux enfants pour interventions viscérales, orthopédiques et urologiques.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="service-card p-8 rounded-2xl bg-white border border-gray-100 text-center group hover:border-medical-200">
+                    <div class="w-16 h-16 mx-auto bg-medical-50 text-medical-500 rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-500 group-hover:text-white transition">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Néonatologie</h3>
+                    <p class="text-gray-500">Unité de soins intensifs pour les prématurés et nouveau-nés nécessitant une surveillance accrue.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="service-card p-8 rounded-2xl bg-white border border-gray-100 text-center group hover:border-medical-200">
+                    <div class="w-16 h-16 mx-auto bg-medical-50 text-medical-500 rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-500 group-hover:text-white transition">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Pédopsychiatrie</h3>
+                    <p class="text-gray-500">Accompagnement psychologique, troubles de l'apprentissage, autisme et hyperactivité.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="service-card p-8 rounded-2xl bg-white border border-gray-100 text-center group hover:border-medical-200">
+                    <div class="w-16 h-16 mx-auto bg-medical-50 text-medical-500 rounded-full flex items-center justify-center text-2xl mb-6 group-hover:bg-medical-500 group-hover:text-white transition">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Dentisterie Pédiatrique</h3>
+                    <p class="text-gray-500">Soins dentaires adaptés aux enfants anxieux, avec possibilité de sédation consciente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Innovation & Services Digitaux -->
+    <section id="technologie" class="py-20 bg-medical-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div class="order-2 lg:order-1 relative">
+                     <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                         alt="Technologie médicale" 
+                         class="rounded-3xl shadow-xl w-full object-cover h-[400px]"
+                         onerror="this.src='https://placehold.co/600x400?text=Digital+Health'">
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-lg hidden md:block">
+                        <p class="text-3xl font-bold text-medical-600">100%</p>
+                        <p class="text-sm text-gray-500">Digitalisé</p>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 mb-12 lg:mb-0">
+                    <h2 class="text-3xl font-heading font-bold text-gray-900 mb-6">L'Hôpital de Demain, Aujourd'hui</h2>
+                    <p class="text-gray-600 mb-8">Nous simplifions le parcours de soin grâce à des outils numériques pensés pour les parents marocains.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-medical-500 text-white">
+                                    <i class="fas fa-video"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg leading-6 font-bold text-gray-900">Téléconsultation</h4>
+                                <p class="mt-2 text-base text-gray-500">Consultez nos spécialistes depuis chez vous (Rabat, Casa, Tanger...) pour des avis rapides ou suivis.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-medical-500 text-white">
+                                    <i class="fas fa-folder-open"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg leading-6 font-bold text-gray-900">Dossier Patient Numérique</h4>
+                                <p class="mt-2 text-base text-gray-500">Accédez aux résultats d'analyses, radios et ordonnances via notre portail sécurisé.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex">
+                            <div class="flex-shrink-0">
+                                <div class="flex items-center justify-center h-12 w-12 rounded-md bg-medical-500 text-white">
+                                    <i class="fas fa-calendar-check"></i>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h4 class="text-lg leading-6 font-bold text-gray-900">Réservation en ligne</h4>
+                                <p class="mt-2 text-base text-gray-500">Choisissez votre créneau, recevez des rappels SMS et évitez la salle d'attente.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Prise de Rendez-vous -->
+    <section id="rendez-vous" class="py-20 bg-white relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
+                <div class="bg-medical-600 py-6 px-8 text-center">
+                    <h2 class="text-2xl font-bold text-white">Prendre Rendez-vous</h2>
+                    <p class="text-medical-100 mt-2">Remplissez le formulaire ci-dessous, notre secrétariat vous confirmera le créneau par téléphone.</p>
+                </div>
+                
+                <div class="p-8 md:p-12">
+                    <form id="appointmentForm" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Nom -->
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom du Parent</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition" placeholder="Votre nom complet">
+                        </div>
+                        
+                        <!-- Téléphone -->
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Téléphone (Maroc)</label>
+                            <input type="tel" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition" placeholder="06 00 00 00 00">
+                        </div>
+
+                        <!-- Enfant -->
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Nom de l'enfant</label>
+                            <input type="text" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition" placeholder="Prénom et Nom">
+                        </div>
+
+                        <!-- Age -->
+                        <div class="col-span-2 md:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Âge de l'enfant</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition">
+                                <option>Moins de 1 an</option>
+                                <option>1 - 5 ans</option>
+                                <option>6 - 12 ans</option>
+                                <option>13 - 18 ans</option>
+                            </select>
+                        </div>
+
+                        <!-- Spécialité -->
+                        <div class="col-span-2">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Service souhaité</label>
+                            <select class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-medical-500 focus:border-transparent outline-none transition">
+                                <option>Pédiatrie Générale</option>
+                                <option>Vaccination</option>
+                                <option>Chirurgie</option>
+                                <option>ORL</option>
+                                <option>Ophtalmologie</option>
+                                <option>Autre</option>
+                            </select>
+                        </div>
+
+                        <!-- Bouton -->
+                        <div class="col-span-2 mt-4">
+                            <button type="submit" class="w-full bg-warm-500 hover:bg-warm-600 text-white font-bold py-4 rounded-lg transition shadow-lg transform active:scale-95">
+                                Confirmer la demande
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Message de succès (caché par défaut) -->
+                    <div id="successMessage" class="hidden mt-6 bg-green-50 border border-green-200 rounded-lg p-4 text-center">
+                        <i class="fas fa-check-circle text-green-500 text-3xl mb-2"></i>
+                        <h3 class="text-green-800 font-bold">Demande envoyée !</h3>
+                        <p class="text-green-700 text-sm">Notre équipe vous contactera sous 2 heures pour confirmer votre rendez-vous.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informations Pratiques / Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <!-- Contact -->
+                <div>
+                    <h3 class="text-xl font-bold font-heading mb-6 flex items-center">
+                        <i class="fas fa-map-marker-alt text-medical-400 mr-2"></i> Localisation
+                    </h3>
+                    <p class="text-gray-400 mb-4">
+                        Boulevard Mohammed VI<br>
+                        Casablanca, Maroc
+                    </p>
+                    <p class="text-gray-400 mb-2"><i class="fas fa-phone mr-2"></i> +212 5 22 00 00 00</p>
+                    <p class="text-gray-400"><i class="fas fa-envelope mr-2"></i> contact@hopital-alamal.ma</p>
+                </div>
+
+                <!-- Liens Rapides -->
+                <div>
+                    <h3 class="text-xl font-bold font-heading mb-6">Liens Rapides</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-medical-400 transition">Nos Médecins</a></li>
+                        <li><a href="#" class="hover:text-medical-400 transition">Assurances Acceptées (CNSS, etc.)</a></li>
+                        <li><a href="#" class="hover:text-medical-400 transition">Guide d'Hospitalisation</a></li>
+                        <li><a href="#" class="hover:text-medical-400 transition">Carrières</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="text-xl font-bold font-heading mb-6">Restez informé</h3>
+                    <p class="text-gray-400 text-sm mb-4">Recevez nos conseils santé pour vos enfants.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Votre email" class="w-full px-4 py-2 rounded-l-lg text-gray-900 focus:outline-none">
+                        <button class="bg-medical-500 px-4 py-2 rounded-r-lg hover:bg-medical-600 transition">OK</button>
+                    </div>
+                    <div class="mt-8 flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram fa-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin fa-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 Hôpital des Enfants Al-Amal. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton Flottant WhatsApp/Urgence -->
+    <a href="tel:+212522000000" class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 transition transform hover:scale-110 z-50 flex items-center justify-center w-16 h-16 md:hidden">
+        <i class="fas fa-phone-alt text-2xl"></i>
+    </a>
+
+    <!-- Scripts JavaScript -->
+    <script>
+        // Gestion du Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fermer le menu au clic sur un lien
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Gestion du formulaire de rendez-vous (Simulation)
+        const form = document.getElementById('appointmentForm');
+        const successMsg = document.getElementById('successMessage');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Animation simple du bouton
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerText;
+            
+            submitBtn.innerText = 'Envoi en cours...';
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75');
+
+            // Simulation d'attente serveur
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMsg.classList.remove('hidden');
+                
+                // Reset après 5 secondes (pour la démo)
+                setTimeout(() => {
+                    form.reset();
+                    form.style.display = 'grid';
+                    successMsg.classList.add('hidden');
+                    submitBtn.innerText = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.classList.remove('opacity-75');
+                }, 5000);
+            }, 1500);
+        });
+
+        // Animation d'apparition au scroll (Fade In Up)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100', 'translate-y-0');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Appliquer l'observateur aux cartes de services
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.classList.add('transition', 'duration-700', 'opacity-0', 'translate-y-10');
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
+
