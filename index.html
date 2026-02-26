@@ -84,13 +84,7 @@
             <div class="flex justify-between h-20 items-center">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <div class="w-10 h-10 bg-medical-500 rounded-full flex items-center justify-center text-white text-xl mr-2">
-                        <i class="fas fa-child"></i>
-                    </div>
-                    <div>
-                        <span class="font-heading font-bold text-2xl text-medical-600">Al-Amal</span>
-                        <span class="block text-xs text-gray-500 font-semibold tracking-wide">HÔPITAL PÉDIATRIQUE</span>
-                    </div>
+                    <img src="logo.svg" alt="Centre Hospitalier Ibn Sina" class="h-14 w-auto">
                 </div>
 
                 <!-- Menu Desktop -->
@@ -142,7 +136,7 @@
                         <a href="#rendez-vous" class="bg-warm-500 hover:bg-warm-600 text-white text-center px-8 py-4 rounded-full font-bold shadow-lg transition transform hover:-translate-y-1">
                             Consultation
                         </a>
-                        <a href="#services" class="bg-white text-medical-600 border-2 border-medical-100 hover:border-medical-500 text-center px-8 py-4 rounded-full font-bold transition">
+                        <a href="#specialites" class="bg-white text-medical-600 border-2 border-medical-100 hover:border-medical-500 text-center px-8 py-4 rounded-full font-bold transition">
                             Nos Services
                         </a>
                     </div>
@@ -319,8 +313,106 @@
         </div>
     </section>
 
+    <!-- Section Équipe Médicale -->
+    <section id="equipe" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-heading font-bold text-gray-900 sm:text-4xl">Notre Équipe de Spécialistes</h2>
+                <p class="mt-4 text-xl text-gray-500 max-w-2xl mx-auto">Des médecins expérimentés, formés dans les meilleures facultés nationales et internationales, entièrement dédiés à la santé de vos enfants.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Médecin 1 -->
+                <div class="service-card text-center rounded-2xl bg-white border border-gray-100 p-8 group hover:border-medical-200">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-5 border-4 border-medical-100 group-hover:border-medical-400 transition">
+                        <img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                             alt="Dr. Youssef Alaoui"
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/200x200?text=Dr.'">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Dr. Youssef Alaoui</h3>
+                    <p class="text-medical-500 text-sm font-semibold mt-1">Pédiatrie Générale</p>
+                    <p class="text-gray-400 text-xs mt-2">Chef de service · 18 ans d'expérience</p>
+                    <div class="mt-4 flex justify-center gap-1">
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                    </div>
+                </div>
+
+                <!-- Médecin 2 -->
+                <div class="service-card text-center rounded-2xl bg-white border border-gray-100 p-8 group hover:border-medical-200">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-5 border-4 border-medical-100 group-hover:border-medical-400 transition">
+                        <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                             alt="Dr. Fatima Benali"
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/200x200?text=Dr.'">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Dr. Fatima Benali</h3>
+                    <p class="text-medical-500 text-sm font-semibold mt-1">Cardiologie Pédiatrique</p>
+                    <p class="text-gray-400 text-xs mt-2">Cardiologue · 12 ans d'expérience</p>
+                    <div class="mt-4 flex justify-center gap-1">
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                    </div>
+                </div>
+
+                <!-- Médecin 3 -->
+                <div class="service-card text-center rounded-2xl bg-white border border-gray-100 p-8 group hover:border-medical-200">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-5 border-4 border-medical-100 group-hover:border-medical-400 transition">
+                        <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                             alt="Dr. Karim El Fassi"
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/200x200?text=Dr.'">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Dr. Karim El Fassi</h3>
+                    <p class="text-medical-500 text-sm font-semibold mt-1">Chirurgie Infantile</p>
+                    <p class="text-gray-400 text-xs mt-2">Chirurgien · 15 ans d'expérience</p>
+                    <div class="mt-4 flex justify-center gap-1">
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-gray-300"><i class="fas fa-star text-xs"></i></span>
+                    </div>
+                </div>
+
+                <!-- Médecin 4 -->
+                <div class="service-card text-center rounded-2xl bg-white border border-gray-100 p-8 group hover:border-medical-200">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-5 border-4 border-medical-100 group-hover:border-medical-400 transition">
+                        <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&q=80"
+                             alt="Dr. Samira Chraibi"
+                             class="w-full h-full object-cover"
+                             onerror="this.src='https://placehold.co/200x200?text=Dr.'">
+                    </div>
+                    <h3 class="text-lg font-bold text-gray-900">Dr. Samira Chraibi</h3>
+                    <p class="text-medical-500 text-sm font-semibold mt-1">Néonatologie</p>
+                    <p class="text-gray-400 text-xs mt-2">Néonatologue · 10 ans d'expérience</p>
+                    <div class="mt-4 flex justify-center gap-1">
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                        <span class="text-yellow-400"><i class="fas fa-star text-xs"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <a href="#rendez-vous" class="inline-flex items-center gap-2 bg-medical-500 hover:bg-medical-600 text-white px-8 py-3 rounded-full font-bold shadow-lg transition transform hover:-translate-y-1">
+                    <i class="fas fa-calendar-plus"></i> Prendre rendez-vous avec un spécialiste
+                </a>
+            </div>
+        </div>
+    </section>
+
     <!-- Section Prise de Rendez-vous -->
-    <section id="rendez-vous" class="py-20 bg-white relative">
+    <section id="rendez-vous" class="py-20 bg-gray-50 relative">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100">
                 <div class="bg-medical-600 py-6 px-8 text-center">
