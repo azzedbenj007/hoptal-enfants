@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 230" role="img" aria-label="Centre Hospitalier Ibn Sina">
+  <defs>
+    <polygon id="etoile"
+      points="0,-11 2.6,-3.6 10.5,-3.4 4.2,1.4 6.5,8.9 0,5.5 -6.5,8.9 -4.2,1.4 -10.5,-3.4 -2.6,-3.6"
+      fill="#b22222"/>
+  </defs>
+
+  <!-- Aile / forme triangulaire bleue -->
+  <path d="M 0,88 L 418,52 L 446,105 L 418,148 Q 260,178 0,142 Z" fill="#1b3a8c"/>
+
+  <!-- Étoiles rouges en arc (10 étoiles) -->
+  <use href="#etoile" transform="translate(248,32) scale(1.15)"/>
+  <use href="#etoile" transform="translate(283,15) scale(1.15)"/>
+  <use href="#etoile" transform="translate(322,9) scale(1.15)"/>
+  <use href="#etoile" transform="translate(360,11) scale(1.15)"/>
+  <use href="#etoile" transform="translate(397,24) scale(1.15)"/>
+  <use href="#etoile" transform="translate(427,46) scale(1.15)"/>
+  <use href="#etoile" transform="translate(448,76) scale(1.15)"/>
+  <use href="#etoile" transform="translate(458,109) scale(1.15)"/>
+  <use href="#etoile" transform="translate(451,142) scale(1.15)"/>
+  <use href="#etoile" transform="translate(432,168) scale(1.15)"/>
+
+  <!-- Texte arabe -->
+  <text x="290" y="196"
+    font-family="Tahoma, 'Arial Unicode MS', sans-serif"
+    font-size="18"
+    fill="#1b3a8c"
+    text-anchor="middle">المركز الإستشفائي إبن سينا</text>
+
+  <!-- Texte français -->
+  <text x="290" y="220"
+    font-family="Arial, Helvetica, sans-serif"
+    font-size="17"
+    fill="#1b3a8c"
+    text-anchor="middle"
+    font-weight="bold"
+    letter-spacing="0.5">Centre Hospitalier Ibn Sina</text>
+</svg>
